@@ -49,7 +49,7 @@
 
 ;;;###autoload
 (define-minor-mode auto-org-md-mode
-  "cycle auto-org-mode between enable/disable"
+  "cycle auto-org-md-mode between on/off"
   :lighter "org-md"
   (if (get 'auto-org-md-mode 'state)
     (progn
