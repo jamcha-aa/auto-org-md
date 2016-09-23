@@ -20,4 +20,4 @@ automatically when you save an org file.
 
 # Usage
 
-Anytime you save an org file, it automatically exports a markdown file.
+**M-x auto-org-md-mode** switches this function enable/disable.

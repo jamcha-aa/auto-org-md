@@ -4,7 +4,7 @@
 
 ;; Author: jamcha <jamcha.aa@gmail.com>
 ;; Created: 2016-09-23
-;; Version: 1.0
+;; Version: 1.1
 
 ;; Keywords: org, markdown
 ;; Package-Requires: ((org "8.0") (emacs "24.4"))
@@ -33,13 +33,28 @@
 (require 'ox-md)
 
 ;;;###autoload
-(defun auto-org-md ()
-  (interactive)
-  (when (and (stringp buffer-file-name)
-             (string-match "\\.org\\'" buffer-file-name))
+(defun auto-org-md/export ()
+  (when (eq major-mode 'org-mode)
     (org-md-export-to-markdown)))
 
-(add-hook 'after-save-hook #'auto-org-md)
+(defun auto-org-md/turn-on-auto-org-md ()
+  "Turn on auto-org-md."
+  (add-hook 'after-save-hook #'auto-org-md/export nil 'make-it-local)
+  (message "auto-org-md-mode is on."))
+
+(defun auto-org-md/turn-off-auto-org-md ()
+  "Turn off auto-org-md."
+  (remove-hook 'after-save-hook #'auto-org-md/export t)
+  (message "auto-org-md-mode is off."))
+
+;;;###autoload
+(define-minor-mode auto-org-md-mode
+  "toggle auto-org-mode"
+  :lighter "org-md"
+  (if (and (boundp auto-org-md-mode)
+           auto-org-md-mode)
+             (auto-org-md/turn-on-auto-org-md)
+            (auto-org-md/turn-off-auto-org-md)))
 
 (provide 'auto-org-md)
 
