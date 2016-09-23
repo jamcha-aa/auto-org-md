@@ -4,7 +4,7 @@
 
 ;; Author: jamcha <jamcha.aa@gmail.com>
 ;; Created: 2016-09-23
-;; Version: 1.1
+;; Version: 1.2
 
 ;; Keywords: org, markdown
 ;; Package-Requires: ((org "8.0") (emacs "24.4"))
@@ -33,28 +33,31 @@
 (require 'ox-md)
 
 ;;;###autoload
-(defun auto-org-md/export ()
-  (when (eq major-mode 'org-mode)
+(defun auto-org-md-export ()
+  (when (derived-mode-p 'org-mode)
     (org-md-export-to-markdown)))
 
-(defun auto-org-md/turn-on-auto-org-md ()
+(defun auto-org-md-on ()
   "Turn on auto-org-md."
-  (add-hook 'after-save-hook #'auto-org-md/export nil 'make-it-local)
+  (add-hook 'after-save-hook #'auto-org-md-export nil 'make-it-local)
   (message "auto-org-md-mode is on."))
 
-(defun auto-org-md/turn-off-auto-org-md ()
+(defun auto-org-md-off ()
   "Turn off auto-org-md."
-  (remove-hook 'after-save-hook #'auto-org-md/export t)
+  (remove-hook 'after-save-hook #'auto-org-md-export t)
   (message "auto-org-md-mode is off."))
 
 ;;;###autoload
 (define-minor-mode auto-org-md-mode
-  "toggle auto-org-mode"
+  "toggle auto-org-mode between enable/disable"
   :lighter "org-md"
-  (if (and (boundp auto-org-md-mode)
-           auto-org-md-mode)
-             (auto-org-md/turn-on-auto-org-md)
-            (auto-org-md/turn-off-auto-org-md)))
+  (if (get 'auto-org-md-mode 'state)
+    (progn
+      (auto-org-md-off)
+      (put 'auto-org-md-mode 'state nil))
+    (progn
+      (auto-org-md-on)
+      (put 'auto-org-md-mode 'state t))))
 
 (provide 'auto-org-md)
 

@@ -20,4 +20,5 @@ automatically when you save an org file.
 
 # Usage
 
-**M-x auto-org-md-mode** switches this function enable/disable.
+ During editing an org file, **M-x auto-org-md-mode** toggles this function between on/off.
+ 
