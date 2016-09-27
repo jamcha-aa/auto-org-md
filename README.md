@@ -7,7 +7,11 @@ automatically when you save an org file.
 
 ## Install
 
-It is recommended to use melpa for installing this package.
+ - It is recommended to use melpa for installing this package. 
+ 
+   **M-x package-install auto-org-md**
+
+ - If you want to install this package manually, run the following line:
 
 ```emacs-lisp
 ;; auto-install
@@ -25,4 +29,4 @@ It is recommended to use melpa for installing this package.
  During editing an org file, **M-x auto-org-md-mode** toggles this function between on/off.
  
 # License
- This program is licensed under GPL3.
+ This program is licensed under GPL 3.
