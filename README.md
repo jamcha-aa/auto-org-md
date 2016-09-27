@@ -1,11 +1,13 @@
 # auto-org-md
 
-author: jamcha (jamcha.aa@gmail.com)
+![](http://melpa.org/packages/auto-org-md-badge.svg)
 
 auto-org-md is a simple package that exports a markdown file
 automatically when you save an org file.
 
 ## Install
+
+It is recommended to use melpa for installing this package.
 
 ```emacs-lisp
 ;; auto-install
@@ -22,3 +24,5 @@ automatically when you save an org file.
 
  During editing an org file, **M-x auto-org-md-mode** toggles this function between on/off.
  
+# License
+ This program is licensed under GPL3.
